@@ -6,17 +6,29 @@ import Footer from "@/components/layout/Footer";
 import { MessageCircle, Mail, MapPin, Phone, Clock } from "lucide-react";
 import { COMPANY } from "@/lib/constants";
 
+const WHATSAPP_NUMBER = "557521370002"; 
 export default function ContatoPage() {
   const [form, setForm] = useState({ nome: "", email: "", telefone: "", assunto: "", mensagem: "" });
   const [enviado, setEnviado] = useState(false);
-  const [enviando, setEnviando] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setEnviando(true);
-    await new Promise(r => setTimeout(r, 1200));
+
+    const mensagem = `
+*Nova mensagem pelo site ZTHA*
+
+*Nome:* ${form.nome}
+*E-mail:* ${form.email}
+*Telefone:* ${form.telefone || "Não informado"}
+*Assunto:* ${form.assunto}
+
+*Mensagem:*
+${form.mensagem}
+    `.trim();
+
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(mensagem)}`;
+    window.open(url, "_blank");
     setEnviado(true);
-    setEnviando(false);
   };
 
   const InfoItem = ({ icon: Icon, label, value, href }: { icon: React.ElementType; label: string; value: string; href?: string }) => (
@@ -43,7 +55,7 @@ export default function ContatoPage() {
       <Navbar/>
       <main style={{ paddingTop: 120, background: "#F7F8FA", minHeight: "100vh" }}>
 
-        {/* Hero da página */}
+        {/* Hero */}
         <div style={{ background: "#fff", borderBottom: "1px solid #E8EBF0", paddingTop: 48, paddingBottom: 48 }}>
           <div className="container-site">
             <span style={{
@@ -78,23 +90,22 @@ export default function ContatoPage() {
                   Informações de contato
                 </h2>
                 <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-                  <InfoItem icon={Phone}   label="WhatsApp" value="(75) 99999-9999" href={COMPANY.whatsapp}/>
-                  <InfoItem icon={Mail}    label="E-mail"   value={COMPANY.email}   href={`mailto:${COMPANY.email}`}/>
-                  <InfoItem icon={MapPin}  label="Endereço" value="Serrinha, Bahia — Brasil"/>
-                  <InfoItem icon={Clock}   label="Atendimento" value="Seg–Sex, 8h às 18h"/>
+                  <InfoItem icon={Phone}  label="WhatsApp"    value={COMPANY.whatsapp} href={`https://wa.me/${WHATSAPP_NUMBER}`}/>
+                  <InfoItem icon={Mail}   label="E-mail"      value={COMPANY.email}    href={`mailto:${COMPANY.email}`}/>
+                  <InfoItem icon={MapPin} label="Endereço"    value="Serrinha, Bahia — Brasil"/>
+                  <InfoItem icon={Clock}  label="Atendimento" value="Seg–Sex, 8h às 18h"/>
                 </div>
               </div>
 
-              {/* WhatsApp CTA */}
-              <a href={COMPANY.whatsapp} style={{
+              <a href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noopener noreferrer" style={{
                 display: "flex", alignItems: "center", justifyContent: "center", gap: 10,
                 background: "#25D366", color: "#fff",
                 fontFamily: "var(--font-display-var, sans-serif)", fontWeight: 700, fontSize: 15,
                 padding: "16px 24px", borderRadius: 10, textDecoration: "none",
-                transition: "background 0.2s, transform 0.15s",
+                transition: "background 0.2s",
               }}
-                onMouseEnter={e => { e.currentTarget.style.background = "#1ebe5d"; e.currentTarget.style.transform = "translateY(-1px)"; }}
-                onMouseLeave={e => { e.currentTarget.style.background = "#25D366"; e.currentTarget.style.transform = "translateY(0)"; }}
+                onMouseEnter={e => { e.currentTarget.style.background = "#1ebe5d"; }}
+                onMouseLeave={e => { e.currentTarget.style.background = "#25D366"; }}
               >
                 <MessageCircle size={20} aria-hidden="true"/>
                 Falar agora pelo WhatsApp
@@ -106,10 +117,24 @@ export default function ContatoPage() {
               {enviado ? (
                 <div style={{ textAlign: "center", padding: "40px 0" }}>
                   <div style={{ width: 64, height: 64, borderRadius: "50%", background: "#F0FAF7", border: "2px solid #4DB89E", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 20px" }}>
-                    <Mail size={28} color="#4DB89E"/>
+                    <MessageCircle size={28} color="#4DB89E"/>
                   </div>
-                  <h3 style={{ fontFamily: "var(--font-display-var, sans-serif)", fontSize: 20, fontWeight: 700, color: "#1A2236", margin: "0 0 10px" }}>Mensagem enviada!</h3>
-                  <p style={{ fontFamily: "var(--font-body-var, sans-serif)", fontSize: 15, color: "#6B7A93", margin: 0 }}>Nossa equipe entrará em contato em breve.</p>
+                  <h3 style={{ fontFamily: "var(--font-display-var, sans-serif)", fontSize: 20, fontWeight: 700, color: "#1A2236", margin: "0 0 10px" }}>
+                    WhatsApp aberto!
+                  </h3>
+                  <p style={{ fontFamily: "var(--font-body-var, sans-serif)", fontSize: 15, color: "#6B7A93", margin: "0 0 20px" }}>
+                    Sua mensagem foi montada automaticamente. Clique em enviar no WhatsApp para concluir.
+                  </p>
+                  <button
+                    onClick={() => { setEnviado(false); setForm({ nome: "", email: "", telefone: "", assunto: "", mensagem: "" }); }}
+                    style={{
+                      background: "transparent", border: "1.5px solid #4DB89E", color: "#4DB89E",
+                      fontFamily: "var(--font-display-var, sans-serif)", fontWeight: 700, fontSize: 14,
+                      padding: "10px 20px", borderRadius: 8, cursor: "pointer",
+                    }}
+                  >
+                    Enviar outra mensagem
+                  </button>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 16 }}>
@@ -158,14 +183,17 @@ export default function ContatoPage() {
                       style={{ ...inputStyle, resize: "vertical", minHeight: 120 }}/>
                   </Field>
 
-                  <button type="submit" disabled={enviando} style={{
-                    background: enviando ? "#8B9CC0" : "#4DB89E",
-                    color: "#fff", border: "none", cursor: enviando ? "not-allowed" : "pointer",
+                  <button type="submit" style={{
+                    background: "#4DB89E", color: "#fff", border: "none", cursor: "pointer",
                     fontFamily: "var(--font-display-var, sans-serif)", fontWeight: 700, fontSize: 15,
-                    padding: "14px 28px", borderRadius: 8, transition: "background 0.2s",
-                    marginTop: 4,
-                  }}>
-                    {enviando ? "Enviando..." : "Enviar mensagem"}
+                    padding: "14px 28px", borderRadius: 8, transition: "background 0.2s", marginTop: 4,
+                    display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
+                  }}
+                    onMouseEnter={e => { e.currentTarget.style.background = "#3AA88E"; }}
+                    onMouseLeave={e => { e.currentTarget.style.background = "#4DB89E"; }}
+                  >
+                    <MessageCircle size={18} aria-hidden="true"/>
+                    Enviar via WhatsApp
                   </button>
                 </form>
               )}
