@@ -25,22 +25,17 @@ export default function Navbar() {
       transition: "box-shadow 0.3s, backdrop-filter 0.3s",
     }}>
       <div className="container-site">
-        <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", height:64 }}>
+        <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", height: 90, paddingTop: 10, paddingBottom: 10 }}>
 
           {/* Logo */}
-          <Link href="/" style={{ display:"flex", alignItems:"center", gap:10, textDecoration:"none" }}>
-            <svg width="26" height="26" viewBox="0 0 40 40" aria-hidden="true">
-              <rect x="4" y="14" width="14" height="14" rx="3" fill="none" stroke="#555F6B" strokeWidth="3"/>
-              <rect x="22" y="12" width="14" height="14" rx="3" fill="none" stroke="#555F6B" strokeWidth="3"/>
-              <circle cx="14" cy="21" r="2.5" fill="#4DB89E"/>
-              <circle cx="26" cy="19" r="2.5" fill="#4DB89E"/>
-              <line x1="18" y1="21" x2="22" y2="19" stroke="#4DB89E" strokeWidth="1.5"/>
-            </svg>
-            <span style={{ fontFamily:"var(--font-display-var, sans-serif)", fontWeight:700, fontSize:15, letterSpacing:"0.18em", color:"#4DB89E" }}>
-              {COMPANY.name}
-            </span>
+          <Link href="/" style={{ display:"flex", alignItems:"center", textDecoration:"none" }}>
+            <img
+              src="/images/logo.png"
+              alt="ZTHA Tecnologia"
+              style={{ height: 110, width: "auto", mixBlendMode: "multiply", display: "block" }}
+            />
           </Link>
-
+          
           {/* Nav desktop */}
           <nav style={{ display:"flex", alignItems:"center", gap:28 }} className="hide-mobile" aria-label="Navegação principal">
             {NAV_LINKS.map((link) => (
