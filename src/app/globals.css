@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+/* ─── Variáveis de design ───────────────────────────────────────────────────── */
+:root {
+  --teal:        #4DB89E;
+  --teal-dark:   #3AA88E;
+  --teal-light:  #F0FAF7;
+  --teal-border: #C8EDE4;
+  --graphite:    #555F6B;
+  --dark:        #1A2236;
+  --dark-mid:    #4B5A72;
+  --muted:       #6B7A93;
+  --border:      #E8EBF0;
+  --bg:          #F7F8FA;
+}
+
+/* ─── Base ──────────────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: #fff;
+  color: var(--dark);
+}
+
+/* ─── Utilitários customizados ──────────────────────────────────────────────── */
+.container-site {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+@media (min-width: 768px) {
+  .container-site {
+    padding-left: 48px;
+    padding-right: 48px;
+  }
+}
+
+/* ─── Animações globais ─────────────────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes badgePop {
+  from { opacity: 0; transform: scale(0.7); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
