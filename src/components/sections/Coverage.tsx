@@ -2,9 +2,16 @@
 
 import { useRef, useEffect, useState } from "react";
 import { MapPin, Wifi, Zap } from "lucide-react";
-import { ComposableMap, Geographies, Geography, Marker, Line } from "react-simple-maps";
+import dynamic from "next/dynamic";
 
-const GEO_URL = "https://raw.githubusercontent.com/codeforamerica/click_that_hood/master/public/data/brazil-states.geojson";
+const MapaCobertura = dynamic(() => import("@/components/sections/MapaCobertura"), {
+  ssr: false,
+  loading: () => (
+    <div style={{ width: "100%", aspectRatio: "960/680", background: "#F0FAF7", borderRadius: 8, display: "flex", alignItems: "center", justifyContent: "center" }}>
+      <span style={{ fontFamily: "var(--font-body-var, sans-serif)", fontSize: 13, color: "#6B7A93" }}>Carregando mapa...</span>
+    </div>
+  ),
+});
 
 const HIGHLIGHTS = [
   { icon: MapPin, label: "Sede em Serrinha, BA" },
@@ -14,21 +21,7 @@ const HIGHLIGHTS = [
 
 const STATE_TAGS = [
   "Bahia", "São Paulo", "Minas Gerais", "Rio de Janeiro",
-  "Pernambuco", "Ceará", "Goiás", "Paraná", "+ todos os estados"
-];
-
-// Coordenadas reais [longitude, latitude]
-const SEDE: [number, number] = [-39.0, -11.5]; // Serrinha/BA
-
-const MARKERS: { coords: [number, number]; label: string }[] = [
-  { coords: [-43.9, -19.9], label: "Belo Horizonte/MG" },
-  { coords: [-46.6, -23.5], label: "São Paulo/SP" },
-  { coords: [-43.2, -22.9], label: "Rio de Janeiro/RJ" },
-  { coords: [-34.9, -8.1],  label: "Recife/PE" },
-  { coords: [-38.5, -3.7],  label: "Fortaleza/CE" },
-  { coords: [-49.3, -16.7], label: "Goiânia/GO" },
-  { coords: [-49.3, -25.4], label: "Curitiba/PR" },
-  { coords: [-38.5, -12.9], label: "Salvador/BA" },
+  "Pernambuco", "Ceará", "Goiás", "Paraná", "+ todos os estados",
 ];
 
 export default function Coverage() {
@@ -128,72 +121,9 @@ export default function Coverage() {
           }}>
             <div style={{
               background: "#fff", borderRadius: 16, border: "1px solid #E8EBF0",
-              padding: 16, width: "100%", maxWidth: 640,
+              padding: 16, width: "100%", maxWidth: 520,
             }}>
-              <ComposableMap
-                projection="geoMercator"
-                projectionConfig={{ center: [-54, -16], scale: 820 }}
-                width={600}
-                height={620}
-                style={{ width: "100%", height: "auto" }}
-              >
-                <Geographies geography={GEO_URL}>
-                  {({ geographies }) =>
-                    geographies.map((geo) => (
-                      <Geography
-                        key={geo.rsmKey}
-                        geography={geo}
-                        fill="#E8F5F1"
-                        stroke="#4DB89E"
-                        strokeWidth={0.8}
-                        style={{
-                          default: { outline: "none" },
-                          hover:   { fill: "#D4EDE7", outline: "none" },
-                          pressed: { outline: "none" },
-                        }}
-                      />
-                    ))
-                  }
-                </Geographies>
-
-                {/* Linhas da sede para os markers */}
-                {MARKERS.map((m) => (
-                  <Line
-                    key={m.label}
-                    from={SEDE}
-                    to={m.coords}
-                    stroke="#4DB89E"
-                    strokeWidth={0.7}
-                    strokeDasharray="4 4"
-                    strokeOpacity={0.4}
-                  />
-                ))}
-
-                {/* Pontos de atendimento */}
-                {MARKERS.map((m) => (
-                  <Marker key={m.label} coordinates={m.coords}>
-                    <circle r={4} fill="#4DB89E" fillOpacity={0.7} stroke="#fff" strokeWidth={1}/>
-                  </Marker>
-                ))}
-
-                {/* Sede — Serrinha/BA com pulse */}
-                <Marker coordinates={SEDE}>
-                  <circle r={10} fill="#4DB89E" fillOpacity={0.15}>
-                    <animate attributeName="r" values="8;16;8" dur="2.5s" repeatCount="indefinite"/>
-                    <animate attributeName="fill-opacity" values="0.15;0;0.15" dur="2.5s" repeatCount="indefinite"/>
-                  </circle>
-                  <circle r={6} fill="#4DB89E" fillOpacity={0.25}>
-                    <animate attributeName="r" values="5;10;5" dur="2.5s" repeatCount="indefinite" begin="0.3s"/>
-                    <animate attributeName="fill-opacity" values="0.25;0;0.25" dur="2.5s" repeatCount="indefinite" begin="0.3s"/>
-                  </circle>
-                  <circle r={5} fill="#4DB89E" stroke="#fff" strokeWidth={1.5}/>
-                  <rect x={-88} y={-10} width={80} height={18} rx={4} fill="#fff" stroke="#C8EDE4" strokeWidth={1}/>
-                  <text x={-48} y={4} textAnchor="middle" fontSize={9} fontWeight={700} fill="#2B8970" fontFamily="sans-serif">
-                    Serrinha/BA
-                  </text>
-                </Marker>
-              </ComposableMap>
-
+              <MapaCobertura scale={820} width={600} height={620}/>
               <p style={{
                 fontFamily: "var(--font-body-var, sans-serif)", fontSize: 11,
                 color: "#6B7A93", textAlign: "center", margin: "4px 0 0",

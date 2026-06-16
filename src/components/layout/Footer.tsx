@@ -16,21 +16,18 @@ export default function Footer() {
 
           {/* Coluna 1 — Marca */}
           <div>
-            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 14 }}>
-              <svg width="24" height="24" viewBox="0 0 40 40" aria-hidden="true">
-                <rect x="4" y="14" width="14" height="14" rx="3" fill="none" stroke="#555F6B" strokeWidth="3"/>
-                <rect x="22" y="12" width="14" height="14" rx="3" fill="none" stroke="#555F6B" strokeWidth="3"/>
-                <circle cx="14" cy="21" r="2.5" fill="#4DB89E"/>
-                <circle cx="26" cy="19" r="2.5" fill="#4DB89E"/>
-                <line x1="18" y1="21" x2="22" y2="19" stroke="#4DB89E" strokeWidth="1.5"/>
-              </svg>
-              <div style={{ marginBottom: 14 }}>
-                <img
-                  src="/images/logo.png"
-                  alt="ZTHA Tecnologia"
-                  style={{ height: 48, width: "auto", mixBlendMode: "multiply" }}
-                />
-              </div>
+            <div style={{ marginBottom: 14 }}>
+              <img
+                src="/images/logo.png"
+                alt="ZTHA Tecnologia"
+                style={{
+                  height: 80,
+                  width: "auto",
+                  display: "block",
+                  filter: "brightness(0) invert(1)",
+                  opacity: 0.9,
+                }}
+              />
             </div>
             
             <p style={{

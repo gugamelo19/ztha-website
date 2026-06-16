@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  ztha-website:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ztha-website
+    restart: unless-stopped
+    ports:
+      - "3002:3000"
+    environment:
+      - NODE_ENV=production
+    networks:
+      - ztha-network
+
+networks:
+  ztha-network:
+    driver: bridge
