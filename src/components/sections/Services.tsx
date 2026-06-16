@@ -45,7 +45,7 @@ export default function Services() {
             color:"#6B7A93", lineHeight:1.75, maxWidth:520, margin:"0 auto",
           }}>
             Do cabeamento à nuvem, do monitoramento ao software — entregamos
-            tecnologia de ponta com suporte humano de verdade.
+            tecnologia de ponta com suporte especializado.
           </p>
         </div>
 
