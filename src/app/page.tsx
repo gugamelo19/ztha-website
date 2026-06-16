@@ -1,5 +1,6 @@
 import Navbar from "@/components/layout/Navbar";
 import Hero from "@/components/sections/Hero";
+import Services from "@/components/sections/Services";
 
 export default function Home() {
   return (
@@ -7,8 +8,8 @@ export default function Home() {
       <Navbar />
       <main className="pt-16">
         <Hero />
-        {/* Próximas seções serão adicionadas aqui:
-            <Services />
+        <Services />
+        {/* Próximas seções:
             <Coverage />
             <Partners />
             <CTA />

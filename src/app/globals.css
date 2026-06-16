@@ -1,23 +1,40 @@
 @import "tailwindcss";
 
-/* ─── Variáveis de design ───────────────────────────────────────────────────── */
-:root {
-  --teal:        #4DB89E;
-  --teal-dark:   #3AA88E;
-  --teal-light:  #F0FAF7;
-  --teal-border: #C8EDE4;
-  --graphite:    #555F6B;
-  --dark:        #1A2236;
-  --dark-mid:    #4B5A72;
-  --muted:       #6B7A93;
-  --border:      #E8EBF0;
-  --bg:          #F7F8FA;
+/* ─── Design tokens via @theme (Tailwind v4) ────────────────────────────────── */
+@theme {
+  /* Cores */
+  --color-teal:         #4DB89E;
+  --color-teal-dark:    #3AA88E;
+  --color-teal-light:   #F0FAF7;
+  --color-teal-border:  #C8EDE4;
+  --color-graphite:     #555F6B;
+  --color-dark:         #1A2236;
+  --color-dark-mid:     #4B5A72;
+  --color-muted:        #6B7A93;
+  --color-site-border:  #E8EBF0;
+  --color-site-bg:      #F7F8FA;
+
+  /* Fontes */
+  --font-display: var(--font-display-var), sans-serif;
+  --font-body:    var(--font-body-var), sans-serif;
+
+  /* Animações */
+  --animate-fade-up:   fadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-badge-pop: badgePop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+
+  /* Keyframes */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes badgePop {
+    from { opacity: 0; transform: scale(0.7); }
+    to   { opacity: 1; transform: scale(1); }
+  }
 }
 
 /* ─── Base ──────────────────────────────────────────────────────────────────── */
-*, *::before, *::after {
-  box-sizing: border-box;
-}
+*, *::before, *::after { box-sizing: border-box; }
 
 html {
   scroll-behavior: smooth;
@@ -27,10 +44,11 @@ html {
 
 body {
   background: #fff;
-  color: var(--dark);
+  color: #1A2236;
+  font-family: var(--font-body-var), sans-serif;
 }
 
-/* ─── Utilitários customizados ──────────────────────────────────────────────── */
+/* ─── Container ─────────────────────────────────────────────────────────────── */
 .container-site {
   width: 100%;
   max-width: 1200px;
@@ -39,25 +57,11 @@ body {
   padding-left: 24px;
   padding-right: 24px;
 }
-
 @media (min-width: 768px) {
-  .container-site {
-    padding-left: 48px;
-    padding-right: 48px;
-  }
+  .container-site { padding-left: 48px; padding-right: 48px; }
 }
 
-/* ─── Animações globais ─────────────────────────────────────────────────────── */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes badgePop {
-  from { opacity: 0; transform: scale(0.7); }
-  to   { opacity: 1; transform: scale(1); }
-}
-
+/* ─── Reduced motion ────────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
