@@ -19,7 +19,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: `${COMPANY.fullName} — Soluções em TI para todo o Brasil`,
+    default: `${COMPANY.name} — Soluções em TI para todo o Brasil`,
     template: `%s | ${COMPANY.fullName}`,
   },
   description: COMPANY.description,
