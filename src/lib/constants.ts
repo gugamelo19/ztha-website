@@ -85,9 +85,9 @@ export const PARTNERS = [
 
 // ─── Navegação ────────────────────────────────────────────────────────────────
 export const NAV_LINKS = [
-  { label: "Serviços",  href: "/servicos" },
+  { label: "Serviços",  href: "/#servicos" },
   { label: "Sobre",     href: "/sobre" },
-  { label: "Parceiros", href: "/parceiros" },
-  { label: "Cobertura", href: "/cobertura" },
+  { label: "Parceiros", href: "/#parceiros" },
+  { label: "Cobertura", href: "/#cobertura" },
   { label: "Contato",   href: "/contato" },
 ] as const;

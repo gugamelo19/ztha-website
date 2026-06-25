@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Employee } from "@/lib/employees";
 import { Mail, Phone, Globe } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function EmployeeCard({ employee }: { employee: Employee }) {
   const [hoveredIcon, setHoveredIcon] = useState<string | null>(null);
@@ -34,10 +35,14 @@ export default function EmployeeCard({ employee }: { employee: Employee }) {
       <div style={{ position: "absolute", bottom: -60, right: -60, width: 200, height: 200, border: "4px solid #E8EBF0", borderRadius: 24, transform: "rotate(45deg)" }}/>
       <div style={{ position: "absolute", bottom: -40, right: -40, width: 200, height: 200, border: "4px solid #4DB89E", borderRadius: 24, transform: "rotate(45deg)", opacity: 0.4 }}/>
 
-      <Link href="/" style={{ marginBottom: 32, position: "relative", zIndex: 2 }}>
-        <img src="/images/logo.png" alt="ZTHA Tecnologia"
-          style={{ height: 120, width: "auto", mixBlendMode: "multiply", display: "block" }}/>
-      </Link>
+      <Image
+        src="/images/logo.png"
+        alt="ZTHA Tecnologia"
+        width={160}
+        height={80}
+        style={{ mixBlendMode: "multiply", display: "block" }}
+        priority
+      />
 
       <div style={{
         background: "#fff", borderRadius: 20, border: "1px solid #E8EBF0",
@@ -48,17 +53,14 @@ export default function EmployeeCard({ employee }: { employee: Employee }) {
           width: 220, height: 220, borderRadius: "50%", border: "3px solid #4DB89E",
           padding: 3, margin: "0 auto 20px", boxShadow: "0 0 0 6px rgba(77,184,158,0.1)",
         }}>
-          <img src={employee.foto} alt={employee.nome}
-            style={{
-              width: "100%",
-              height: "100%",
-              borderRadius: "50%",
-              objectFit: "cover",
-              display: "block",
-              imageRendering: "auto",
-              WebkitBackfaceVisibility: "hidden",
-              transform: "translateZ(0)",
-            }}/>
+          <Image
+            src={employee.foto}
+            alt={employee.nome}
+            width={500}
+            height={500}
+            style={{ width: "100%", height: "100%", borderRadius: "50%", objectFit: "cover", display: "block" }}
+            priority
+          />
         </div>
 
         <h1 style={{ fontFamily: "var(--font-display-var, sans-serif)", fontSize: 22, fontWeight: 700, color: "#1A2236", margin: "0 0 4px" }}>

@@ -10,11 +10,11 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <main style={{ paddingTop: 64 }}>
-        <Hero />
-        <Services />
-        <Partners />
-        <Coverage />
+      <main style={{ paddingTop: 120 }}>
+        <div id="inicio"><Hero /></div>
+        <div id="servicos"><Services /></div>
+        <div id="parceiros"><Partners /></div>
+        <div id="cobertura"><Coverage /></div>
         <CTA />
       </main>
       <Footer />

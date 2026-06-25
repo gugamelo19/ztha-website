@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { MapPin, Phone, Mail } from "lucide-react";
 import { COMPANY, NAV_LINKS, SERVICES } from "@/lib/constants";
+import Image from "next/image";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -17,16 +18,12 @@ export default function Footer() {
           {/* Coluna 1 — Marca */}
           <div>
             <div style={{ marginBottom: 14 }}>
-              <img
+              <Image
                 src="/images/logo.png"
                 alt="ZTHA Tecnologia"
-                style={{
-                  height: 80,
-                  width: "auto",
-                  display: "block",
-                  filter: "brightness(0) invert(1)",
-                  opacity: 0.9,
-                }}
+                width={120}
+                height={68}
+                style={{ display: "block", filter: "brightness(0) invert(1)", opacity: 0.9, width: "auto", height: 160 }}
               />
             </div>
             

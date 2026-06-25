@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Space_Grotesk, Inter } from "next/font/google";
 import "./globals.css";
 import { COMPANY } from "@/lib/constants";
+import CookieBanner from "@/components/ui/CookieBanner";
+import WhatsAppFloat from "@/components/ui/WhatsAppFloat";
+
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -39,7 +42,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-BR" className={`${spaceGrotesk.variable} ${inter.variable}`}>
-      <body>{children}</body>
+      <body>{children}
+        <WhatsAppFloat />
+        <CookieBanner />
+      </body>
     </html>
   );
 }

@@ -68,3 +68,78 @@ body {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ─── Responsividade Mobile ─────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .container-site {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+    padding-top: 64px !important;
+    padding-bottom: 64px !important;
+  }
+
+  .hero-panel {
+    clip-path: polygon(0 75%, 100% 60%, 100% 100%, 0 100%) !important;
+  }
+
+  .hero-badge-area {
+    justify-content: flex-start !important;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .partners-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .coverage-grid {
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+
+  .contato-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr !important;
+  }
+
+  .sobre-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .valores-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .cobertura-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .valores-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .cobertura-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .partners-grid {
+    grid-template-columns: 1fr !important;
+  }
+}

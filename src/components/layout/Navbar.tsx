@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { NAV_LINKS, COMPANY } from "@/lib/constants";
+import Image from "next/image";
 
 export default function Navbar() {
   const [isOpen, setIsOpen]     = useState(false);
@@ -28,11 +29,15 @@ export default function Navbar() {
         <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", height: 90, paddingTop: 10, paddingBottom: 10 }}>
 
           {/* Logo */}
-          <Link href="/" style={{ display:"flex", alignItems:"center", textDecoration:"none" }}>
-            <img
+         <Link href="/" style={{ display:"flex", alignItems:"center", textDecoration:"none" }}>
+            <Image
               src="/images/logo.png"
               alt="ZTHA Tecnologia"
-              style={{ height: 110, width: "auto", mixBlendMode: "multiply", display: "block" }}
+              width={0}
+              height={0}
+              unoptimized
+              style={{ mixBlendMode: "multiply", display: "block", width: "auto", height: 110  }}
+              priority
             />
           </Link>
           

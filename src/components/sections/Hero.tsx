@@ -1,14 +1,52 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { COMPANY } from "@/lib/constants";
+
 
 interface Node { x:number; y:number; vx:number; vy:number; radius:number; opacity:number; }
 
 const TEAL_RGB  = "77, 184, 158";
 const NODE_COUNT = 55;
 const MAX_DIST   = 130;
+
+function AnimatedNumber({ value, prefix = "" }: { value: number; prefix?: string }) {
+  const [count, setCount] = useState(0);
+  const ref = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) {
+        let start = 0;
+        const duration = 1500;
+        const startTime = performance.now();
+        function animate(now: number) {
+          const progress = Math.min((now - startTime) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          start = Math.round(eased * value);
+          setCount(start);
+          if (progress < 1) requestAnimationFrame(animate);
+        }
+        requestAnimationFrame(animate);
+        obs.disconnect();
+      }
+    }, { threshold: 0.5 });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [value]);
+
+  return (
+    <span ref={ref} style={{
+      fontFamily: "var(--font-display-var, sans-serif)",
+      fontSize: 32, fontWeight: 800, color: "#1A2236", lineHeight: 1, letterSpacing: "-1px",
+    }}>
+      {prefix}{count}
+    </span>
+  );
+}
 
 export default function Hero() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -72,10 +110,14 @@ export default function Hero() {
       <canvas ref={canvasRef} aria-hidden="true" style={{ position:"absolute", inset:0, width:"100%", height:"100%", pointerEvents:"none" }}/>
 
       {/* Painel geométrico */}
-      <div aria-hidden="true" style={{
-        position:"absolute", inset:0, background:"#F0FAF7", zIndex:0,
-        clipPath:"polygon(62% 0, 100% 0, 100% 100%, 50% 100%)",
-      }}/>
+      <div
+        className="hero-panel"
+        aria-hidden="true"
+        style={{
+          position: "absolute", inset: 0, background: "#F0FAF7", zIndex: 0,
+          clipPath: "polygon(62% 0, 100% 0, 100% 100%, 50% 100%)",
+        }}
+      />
 
       <div className="container-site" style={{ position:"relative", zIndex:2, paddingTop:96, paddingBottom:96 }}>
         <div style={{ display:"grid", gridTemplateColumns:"1fr auto", gap:48, alignItems:"center" }} className="hero-grid">
@@ -122,7 +164,7 @@ export default function Hero() {
               >
                 Fale com um especialista
               </Link>
-              <Link href="/servicos" style={{
+              <Link href="#servicos" style={{
                 display:"inline-flex", alignItems:"center",
                 background:"transparent", color:"#4B5A72",
                 fontFamily:"var(--font-display-var, sans-serif)", fontWeight:600, fontSize:14,
@@ -137,22 +179,28 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Badge */}
-          <div style={{ display:"flex", alignItems:"center", justifyContent:"center", animation:"badgePop 0.7s cubic-bezier(0.34,1.56,0.64,1) 0.4s both" }}
-            aria-label={`Mais de ${COMPANY.yearsInBusiness} anos de experiência na área`}>
+          {/* Badge +10 anos */}
+          <div
+            className="hero-badge-area"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              animation: "badgePop 0.7s cubic-bezier(0.34,1.56,0.64,1) 0.4s both",
+            }}
+            aria-label={`Mais de ${COMPANY.yearsInBusiness} anos de experiência na área`}
+          >
             <div style={{
-              width:144, height:144, borderRadius:"50%",
-              border:"2.5px solid #4DB89E", background:"#fff",
-              boxShadow:"0 0 0 12px rgba(77,184,158,0.07), 0 0 0 24px rgba(77,184,158,0.03)",
-              display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", textAlign:"center",
+              width: 144, height: 144, borderRadius: "50%",
+              border: "2.5px solid #4DB89E", background: "#fff",
+              boxShadow: "0 0 0 12px rgba(77,184,158,0.07), 0 0 0 24px rgba(77,184,158,0.03)",
+              display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center",
             }}>
-              <span style={{ fontFamily:"var(--font-display-var, sans-serif)", fontSize:32, fontWeight:800, color:"#1A2236", lineHeight:1, letterSpacing:"-1px" }}>
-                +{COMPANY.yearsInBusiness}
-              </span>
-              <span style={{ fontFamily:"var(--font-display-var, sans-serif)", fontSize:14, fontWeight:700, color:"#4DB89E" }}>
+              <AnimatedNumber value={COMPANY.yearsInBusiness} prefix="+" />
+              <span style={{ fontFamily: "var(--font-display-var, sans-serif)", fontSize: 14, fontWeight: 700, color: "#4DB89E" }}>
                 anos
               </span>
-              <span style={{ fontFamily:"var(--font-body-var, sans-serif)", fontSize:10, color:"#6B7A93", lineHeight:1.4, marginTop:4 }}>
+              <span style={{ fontFamily: "var(--font-body-var, sans-serif)", fontSize: 10, color: "#6B7A93", lineHeight: 1.4, marginTop: 4 }}>
                 de experiência<br/>na área
               </span>
             </div>
