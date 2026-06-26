@@ -120,19 +120,6 @@ export default function Footer() {
             }}>
               Atendimento rápido via WhatsApp ou formulário de contato.
             </p>
-            <a href={COMPANY.whatsapp} style={{
-              display: "inline-flex", alignItems: "center", gap: 8,
-              background: "#25D366", color: "#fff",
-              fontFamily: "var(--font-display-var, sans-serif)", fontWeight: 700, fontSize: 13,
-              padding: "10px 18px", borderRadius: 6, textDecoration: "none",
-              transition: "background 0.2s",
-            }}
-              onMouseEnter={e => (e.currentTarget.style.background = "#1ebe5d")}
-              onMouseLeave={e => (e.currentTarget.style.background = "#25D366")}
-            >
-              <Phone size={14} aria-hidden="true"/>
-              WhatsApp
-            </a>
           </div>
 
         </div>

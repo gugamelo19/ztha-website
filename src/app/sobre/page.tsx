@@ -15,9 +15,9 @@ const VALORES = [
 const TIMELINE = [
   { ano: "2014", titulo: "Fundação", desc: "A ZTHA nasce em Serrinha/BA com foco em suporte técnico e infraestrutura de redes para pequenas empresas da região." },
   { ano: "2016", titulo: "Expansão em CFTV", desc: "Passamos a oferecer soluções completas de câmeras e monitoramento, tornando-nos revendedores autorizados Intelbras e Hikvision." },
-  { ano: "2018", titulo: "Cobertura regional", desc: "Expandimos o atendimento para outros municípios da Bahia e passamos a fornecer links de internet corporativos." },
+  { ano: "2018", titulo: "Cobertura regional", desc: "Expandimos o atendimento para outros municípios da Bahia e passamos a oferecer soluções para todo estado." },
   { ano: "2020", titulo: "Desenvolvimento de Software", desc: "Lançamos a área de desenvolvimento, criando sistemas web e mobile personalizados para nossos clientes." },
-  { ano: "2022", titulo: "Alcance nacional", desc: "Começamos a atender clientes em outros estados, com fornecimento de links e suporte remoto para todo o Brasil." },
+  { ano: "2022", titulo: "Alcance nacional", desc: "Começamos a atender clientes em outros estados, com fornecimento de soluções tecnológicas para todo o Brasil." },
   { ano: "2024", titulo: "Hoje", desc: "Mais de 10 anos de mercado, com uma equipe especializada e centenas de clientes ativos em todo o território nacional." },
 ];
 
@@ -43,10 +43,10 @@ export default function SobrePage() {
               fontSize: "clamp(28px, 4vw, 46px)", fontWeight: 800,
               color: "#1A2236", letterSpacing: "-0.03em", margin: "0 0 12px",
             }}>
-              +10 anos conectando<br/>pessoas e empresas
+              +10 anos desenhando novas rotas<br/>
             </h1>
             <p style={{ fontFamily: "var(--font-body-var, sans-serif)", fontSize: 16, color: "#6B7A93", margin: 0, maxWidth: 560, lineHeight: 1.7 }}>
-              Nascemos em Serrinha, Bahia, com a missão de levar tecnologia de qualidade para empresas e pessoas físicas — independente do tamanho ou localização.
+              Soluções em tecnologia que impulsionam o seu negócio — com qualidade, proximidade e compromisso.
             </p>
           </div>
         </div>
@@ -56,8 +56,8 @@ export default function SobrePage() {
           {/* Missão e visão */}
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginBottom: 64 }} className="sobre-grid">
             {[
-              { titulo: "Nossa Missão", texto: "Oferecer soluções completas em tecnologia da informação com qualidade, agilidade e preço justo — tornando a tecnologia acessível para empresas e pessoas físicas em todo o Brasil." },
-              { titulo: "Nossa Visão", texto: "Ser referência em soluções de TI no Nordeste e expandir nossa presença nacional, reconhecidos pela excelência técnica e pelo atendimento humanizado que nos diferencia." },
+              { titulo: "Nossa Missão", texto: "Entregar soluções completas em tecnologia com qualidade, agilidade e compromisso — simplificando a infraestrutura da sua empresa para que você possa focar no que realmente importa: o crescimento do seu negócio." },
+              { titulo: "Nossa Visão", texto: "Ser a referência em soluções de tecnologia para empresas e consolidar nossa atuação nacional, reconhecidos por unir excelência técnica a um atendimento próximo e humano." },
             ].map(({ titulo, texto }) => (
               <div key={titulo} style={{ background: "#fff", borderRadius: 14, border: "1px solid #E8EBF0", padding: 32 }}>
                 <div style={{ width: 32, height: 4, background: "#4DB89E", borderRadius: 2, marginBottom: 16 }}/>

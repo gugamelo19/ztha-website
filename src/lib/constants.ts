@@ -23,7 +23,7 @@ export const COMPANY = {
   city: "Serrinha",
   state: "Bahia",
   country: "Brasil",
-  whatsapp: "https://wa.me/557521370002", // ← trocar pelo número real
+  whatsapp: "(75) 2137-0002", 
   email: "contato@ztha.com.br",
   yearsInBusiness: 10,
 } as const;
@@ -85,9 +85,9 @@ export const PARTNERS = [
 
 // ─── Navegação ────────────────────────────────────────────────────────────────
 export const NAV_LINKS = [
-  { label: "Serviços",  href: "/#servicos" },
+  { label: "Serviços",  href: "/servicos" },
   { label: "Sobre",     href: "/sobre" },
-  { label: "Parceiros", href: "/#parceiros" },
-  { label: "Cobertura", href: "/#cobertura" },
+  { label: "Parceiros", href: "/parceiros" },
+  { label: "Cobertura", href: "/cobertura" },
   { label: "Contato",   href: "/contato" },
 ] as const;

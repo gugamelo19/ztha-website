@@ -93,23 +93,10 @@ ${form.mensagem}
                   <InfoItem icon={Phone}  label="WhatsApp"    value={COMPANY.whatsapp} href={`https://wa.me/${WHATSAPP_NUMBER}`}/>
                   <InfoItem icon={Mail}   label="E-mail"      value={COMPANY.email}    href={`mailto:${COMPANY.email}`}/>
                   <InfoItem icon={MapPin} label="Endereço"    value="Serrinha, Bahia — Brasil"/>
-                  <InfoItem icon={Clock}  label="Atendimento" value="Seg–Sex, 8h às 18h"/>
+                  <InfoItem icon={Clock} label="Suporte" value="24 horas"/>
+                  <InfoItem icon={Clock} label="Comercial" value="Seg–Sex, 08:00 às 18:00"/>
                 </div>
               </div>
-
-              <a href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noopener noreferrer" style={{
-                display: "flex", alignItems: "center", justifyContent: "center", gap: 10,
-                background: "#25D366", color: "#fff",
-                fontFamily: "var(--font-display-var, sans-serif)", fontWeight: 700, fontSize: 15,
-                padding: "16px 24px", borderRadius: 10, textDecoration: "none",
-                transition: "background 0.2s",
-              }}
-                onMouseEnter={e => { e.currentTarget.style.background = "#1ebe5d"; }}
-                onMouseLeave={e => { e.currentTarget.style.background = "#25D366"; }}
-              >
-                <MessageCircle size={20} aria-hidden="true"/>
-                Falar agora pelo WhatsApp
-              </a>
             </div>
 
             {/* Formulário */}

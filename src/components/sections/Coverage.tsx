@@ -76,9 +76,8 @@ export default function Coverage() {
               fontFamily: "var(--font-body-var, sans-serif)", fontSize: 15,
               color: "#6B7A93", lineHeight: 1.75, margin: "0 0 28px", maxWidth: 420,
             }}>
-              Sediados em Serrinha, Bahia, fornecemos links de internet e soluções
-              de TI para clientes em todos os estados. Distância não é barreira —
-              atendemos remotamente com a mesma qualidade do presencial.
+              Sediados em Serrinha, Bahia, fornecemos soluções
+              de TI para clientes em todos os estados.
             </p>
 
             <div style={{ display: "flex", flexDirection: "column", gap: 12, marginBottom: 28 }}>
