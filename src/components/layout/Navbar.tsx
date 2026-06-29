@@ -36,7 +36,8 @@ export default function Navbar() {
               width={0}
               height={0}
               unoptimized
-              style={{ mixBlendMode: "multiply", display: "block", width: "auto", height: 110  }}
+              className="nav-logo-img"
+              style={{ mixBlendMode: "multiply", display: "block", width: "auto", height: 110, maxHeight: "60px" }}
               priority
             />
           </Link>
@@ -106,7 +107,10 @@ export default function Navbar() {
       <style>{`
         @media (min-width: 768px) { .hide-mobile { display: flex !important; } .show-mobile { display: none !important; } }
         @media (max-width: 767px) { .hide-mobile { display: none !important; } .show-mobile { display: flex !important; } }
-      `}</style>
+        @media (max-width: 767px) {
+        .nav-logo-img { height: 60px !important; }
+         }
+        `}</style>
     </header>
   );
 }

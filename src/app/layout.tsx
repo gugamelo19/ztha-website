@@ -22,9 +22,9 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: `${COMPANY.name} — Soluções em TI para todo o Brasil`,
-    template: `%s | ${COMPANY.fullName}`,
-  },
+  default: "ZTHA Tecnologia — Soluções em Tecnologia para todo o Brasil",
+  template: "%s | ZTHA Tecnologia",
+},
   description: COMPANY.description,
   keywords: ["ZTHA","tecnologia","TI","suporte técnico","CFTV","monitoramento",
     "cabeamento estruturado","backup nuvem","desenvolvimento software",
@@ -37,6 +37,10 @@ export const metadata: Metadata = {
     description: COMPANY.description,
   },
   robots: { index: true, follow: true },
+  icons: {
+  icon: "/favicon.ico",
+  apple: "/favicon.ico",
+},
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
