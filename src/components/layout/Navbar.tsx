@@ -26,7 +26,7 @@ export default function Navbar() {
       transition: "box-shadow 0.3s, backdrop-filter 0.3s",
     }}>
       <div className="container-site">
-        <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", height: 90, paddingTop: 10, paddingBottom: 10 }}>
+        <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", height: 100, paddingTop: 8, paddingBottom: 8 }}>
 
           {/* Logo */}
          <Link href="/" style={{ display:"flex", alignItems:"center", textDecoration:"none" }}>
@@ -37,7 +37,7 @@ export default function Navbar() {
               height={0}
               unoptimized
               className="nav-logo-img"
-              style={{ mixBlendMode: "multiply", display: "block", width: "auto", height: 110, maxHeight: "60px" }}
+              style={{ mixBlendMode: "darken", display: "block", width: "auto" }}
               priority
             />
           </Link>
@@ -107,10 +107,9 @@ export default function Navbar() {
       <style>{`
         @media (min-width: 768px) { .hide-mobile { display: flex !important; } .show-mobile { display: none !important; } }
         @media (max-width: 767px) { .hide-mobile { display: none !important; } .show-mobile { display: flex !important; } }
-        @media (max-width: 767px) {
-        .nav-logo-img { height: 60px !important; }
-         }
-        `}</style>
+        .nav-logo-img { height: 90px; }
+        @media (max-width: 767px) { .nav-logo-img { height: 48px; } }
+      `}</style>
     </header>
   );
 }
