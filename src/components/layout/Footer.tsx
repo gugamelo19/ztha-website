@@ -21,7 +21,7 @@ export default function Footer() {
               <Image
                 src="/images/logo.png"
                 alt="ZTHA Tecnologia"
-                width={120}
+                width={100}
                 height={68}
                 style={{ display: "block", filter: "brightness(0) invert(1)", opacity: 0.9, width: "auto", height: 160 }}
               />
