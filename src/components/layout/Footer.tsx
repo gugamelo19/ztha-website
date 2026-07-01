@@ -9,146 +9,88 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer style={{ background: "#0F1522", borderTop: "1px solid #1e2a40" }}>
+    <footer style={{ background: "#0A121E", borderTop: "1px solid #1D2C3E" }}>
 
-      {/* Corpo do footer */}
       <div className="container-site" style={{ paddingTop: 56, paddingBottom: 48 }}>
         <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1.4fr", gap: 40 }} className="footer-grid">
 
-          {/* Coluna 1 — Marca */}
+          {/* Marca */}
           <div>
             <div style={{ marginBottom: 14 }}>
               <Image
                 src="/images/logo.png"
                 alt="ZTHA Tecnologia"
-                width={100}
-                height={68}
-                style={{ display: "block", filter: "brightness(0) invert(1)", opacity: 0.9, width: "auto", height: 160 }}
+                width={0}
+                height={0}
+                unoptimized
+                style={{ display: "block", filter: "brightness(0) invert(1)", opacity: 0.9, width: "auto", height: 60 }}
               />
             </div>
-            
-            <p style={{
-              fontFamily: "var(--font-body-var, sans-serif)", fontSize: 13,
-              color: "#4B5A72", lineHeight: 1.7, marginBottom: 20, maxWidth: 260,
-            }}>
-              Soluções completas em tecnologia da informação para empresas e
-              pessoas físicas em todo o Brasil.
+            <p style={{ fontFamily: "var(--font-body-var, sans-serif)", fontSize: 13, color: "#6F8197", lineHeight: 1.7, marginBottom: 20, maxWidth: 260 }}>
+              Soluções completas em tecnologia para empresas em todo o Brasil.
             </p>
-
-            {/* Contato rápido */}
             <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-              <a href={`mailto:${COMPANY.email}`} style={{
-                display: "flex", alignItems: "center", gap: 8,
-                fontFamily: "var(--font-body-var, sans-serif)", fontSize: 13,
-                color: "#4B5A72", textDecoration: "none", transition: "color 0.2s",
-              }}
+              <a href={`mailto:${COMPANY.email}`} style={{ display: "flex", alignItems: "center", gap: 8, fontFamily: "var(--font-body-var, sans-serif)", fontSize: 13, color: "#6F8197", textDecoration: "none", transition: "color 0.2s" }}
                 onMouseEnter={e => (e.currentTarget.style.color = "#4DB89E")}
-                onMouseLeave={e => (e.currentTarget.style.color = "#4B5A72")}
+                onMouseLeave={e => (e.currentTarget.style.color = "#6F8197")}
               >
-                <Mail size={13} color="#4DB89E" aria-hidden="true"/>
-                {COMPANY.email}
+                <Mail size={13} color="#4DB89E"/>{COMPANY.email}
               </a>
               <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                <MapPin size={13} color="#4DB89E" aria-hidden="true"/>
-                <span style={{ fontFamily: "var(--font-body-var, sans-serif)", fontSize: 13, color: "#4B5A72" }}>
+                <MapPin size={13} color="#4DB89E"/>
+                <span style={{ fontFamily: "var(--font-body-var, sans-serif)", fontSize: 13, color: "#6F8197" }}>
                   {COMPANY.city}, {COMPANY.state} — {COMPANY.country}
                 </span>
               </div>
             </div>
           </div>
 
-          {/* Coluna 2 — Navegação */}
+          {/* Navegação */}
           <div>
-            <h3 style={{
-              fontFamily: "var(--font-display-var, sans-serif)", fontSize: 11,
-              fontWeight: 700, color: "#8B9CC0", letterSpacing: "0.12em",
-              textTransform: "uppercase", marginBottom: 16,
-            }}>
-              Empresa
-            </h3>
+            <h3 style={{ fontFamily: "var(--font-display-var, sans-serif)", fontSize: 12, fontWeight: 600, color: "#9FB0C4", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 16 }}>Empresa</h3>
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
               {NAV_LINKS.map((link) => (
-                <Link key={link.href} href={link.href} style={{
-                  fontFamily: "var(--font-body-var, sans-serif)", fontSize: 13,
-                  color: "#4B5A72", textDecoration: "none", transition: "color 0.2s",
-                }}
+                <Link key={link.href} href={link.href} style={{ fontFamily: "var(--font-body-var, sans-serif)", fontSize: 13, color: "#6F8197", textDecoration: "none", transition: "color 0.2s" }}
                   onMouseEnter={e => (e.currentTarget.style.color = "#4DB89E")}
-                  onMouseLeave={e => (e.currentTarget.style.color = "#4B5A72")}
-                >
-                  {link.label}
-                </Link>
+                  onMouseLeave={e => (e.currentTarget.style.color = "#6F8197")}
+                >{link.label}</Link>
               ))}
             </div>
           </div>
 
-          {/* Coluna 3 — Serviços */}
+          {/* Serviços */}
           <div>
-            <h3 style={{
-              fontFamily: "var(--font-display-var, sans-serif)", fontSize: 11,
-              fontWeight: 700, color: "#8B9CC0", letterSpacing: "0.12em",
-              textTransform: "uppercase", marginBottom: 16,
-            }}>
-              Serviços
-            </h3>
+            <h3 style={{ fontFamily: "var(--font-display-var, sans-serif)", fontSize: 12, fontWeight: 600, color: "#9FB0C4", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 16 }}>Serviços</h3>
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
               {SERVICES.map((s) => (
-                <Link key={s.id} href={`/servicos#${s.id}`} style={{
-                  fontFamily: "var(--font-body-var, sans-serif)", fontSize: 13,
-                  color: "#4B5A72", textDecoration: "none", transition: "color 0.2s",
-                }}
+                <Link key={s.id} href={`/servicos#${s.id}`} style={{ fontFamily: "var(--font-body-var, sans-serif)", fontSize: 13, color: "#6F8197", textDecoration: "none", transition: "color 0.2s" }}
                   onMouseEnter={e => (e.currentTarget.style.color = "#4DB89E")}
-                  onMouseLeave={e => (e.currentTarget.style.color = "#4B5A72")}
-                >
-                  {s.name}
-                </Link>
+                  onMouseLeave={e => (e.currentTarget.style.color = "#6F8197")}
+                >{s.name}</Link>
               ))}
             </div>
           </div>
 
-          {/* Coluna 4 — CTA */}
+          {/* CTA */}
           <div>
-            <h3 style={{
-              fontFamily: "var(--font-display-var, sans-serif)", fontSize: 11,
-              fontWeight: 700, color: "#8B9CC0", letterSpacing: "0.12em",
-              textTransform: "uppercase", marginBottom: 16,
-            }}>
-              Fale Conosco
-            </h3>
-            <p style={{
-              fontFamily: "var(--font-body-var, sans-serif)", fontSize: 13,
-              color: "#4B5A72", lineHeight: 1.65, marginBottom: 16,
-            }}>
+            <h3 style={{ fontFamily: "var(--font-display-var, sans-serif)", fontSize: 12, fontWeight: 600, color: "#9FB0C4", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 16 }}>Fale Conosco</h3>
+            <p style={{ fontFamily: "var(--font-body-var, sans-serif)", fontSize: 13, color: "#6F8197", lineHeight: 1.65, marginBottom: 16 }}>
               Atendimento rápido via WhatsApp ou formulário de contato.
             </p>
           </div>
-
         </div>
       </div>
 
-      {/* Barra inferior */}
-      <div style={{ borderTop: "1px solid #1e2a40" }}>
-        <div className="container-site" style={{
-          paddingTop: 16, paddingBottom: 16,
-          display: "flex", justifyContent: "space-between", alignItems: "center",
-          flexWrap: "wrap", gap: 8,
-        }}>
-          <p style={{ fontFamily: "var(--font-body-var, sans-serif)", fontSize: 12, color: "#2D3A52", margin: 0 }}>
+      <div style={{ borderTop: "1px solid #1D2C3E" }}>
+        <div className="container-site" style={{ paddingTop: 16, paddingBottom: 16, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 8 }}>
+          <p style={{ fontFamily: "var(--font-body-var, sans-serif)", fontSize: 12, color: "#8295AA", margin: 0 }}>
             © {year} {COMPANY.fullName}. Todos os direitos reservados.
           </p>
-          <p style={{ fontFamily: "var(--font-body-var, sans-serif)", fontSize: 12, color: "#2D3A52", margin: 0 }}>
+          <p style={{ fontFamily: "var(--font-body-var, sans-serif)", fontSize: 12, color: "#8295AA", margin: 0 }}>
             {COMPANY.city}, {COMPANY.state} — {COMPANY.country}
           </p>
         </div>
       </div>
-
-      <style>{`
-        @media (max-width: 900px) {
-          .footer-grid { grid-template-columns: 1fr 1fr !important; }
-        }
-        @media (max-width: 560px) {
-          .footer-grid { grid-template-columns: 1fr !important; }
-        }
-      `}</style>
     </footer>
   );
 }

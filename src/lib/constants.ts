@@ -23,7 +23,7 @@ export const COMPANY = {
   city: "Serrinha",
   state: "Bahia",
   country: "Brasil",
-  whatsapp: "(75) 2137-0002", 
+  whatsapp: "https://wa.me/557521370002", 
   email: "contato@ztha.com.br",
   yearsInBusiness: 10,
 } as const;
