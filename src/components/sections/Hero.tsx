@@ -28,12 +28,12 @@ export default function Hero() {
   }, []);
 
   return (
-    <section style={{ position:"relative", overflow:"hidden", background:"#0A121E", padding:0 }}>
+    <section style={{ position:"relative", overflow:"hidden", background:"#0A121E", padding:0, minHeight:"100vh", display:"flex", alignItems:"center" }}>
       <canvas ref={canvasRef} aria-hidden="true" style={{ position:"absolute", inset:0, width:"100%", height:"100%", pointerEvents:"none", opacity:0.9 }}/>
       <div aria-hidden="true" style={{ position:"absolute", top:-180, right:-120, width:560, height:560, background:"radial-gradient(circle, rgba(77,184,158,0.22), transparent 62%)", pointerEvents:"none" }}/>
       <div aria-hidden="true" style={{ position:"absolute", bottom:-220, left:-160, width:520, height:520, background:"radial-gradient(circle, rgba(47,108,160,0.16), transparent 65%)", pointerEvents:"none" }}/>
 
-      <div style={{ position:"relative", zIndex:2, maxWidth:1200, margin:"0 auto", padding:"108px 32px 96px" }}>
+      <div style={{ position:"relative", zIndex:2, maxWidth:1200, margin:"0 auto", padding:"140px 32px 96px" }}>
         <div className="hero-grid" style={{ display:"grid", gridTemplateColumns:"1.15fr 0.85fr", gap:56, alignItems:"center" }}>
 
           {/* Texto */}
