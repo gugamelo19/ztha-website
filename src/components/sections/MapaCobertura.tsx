@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef, useEffect, useState } from "react";
 import { ComposableMap, Geographies, Geography, Marker, Line } from "react-simple-maps";
 
 const GEO_URL = "https://raw.githubusercontent.com/codeforamerica/click_that_hood/master/public/data/brazil-states.geojson";
@@ -43,62 +44,88 @@ interface Props {
 }
 
 export default function MapaCobertura({ scale = 820, width = 960, height = 680 }: Props) {
+  const wrapRef = useRef<HTMLDivElement>(null);
+  const [visibleCount, setVisibleCount] = useState(0);
+
+  useEffect(() => {
+    const el = wrapRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) {
+        obs.disconnect();
+        let i = 0;
+        const iv = setInterval(() => {
+          i++;
+          setVisibleCount(i);
+          if (i >= CIDADES.length) clearInterval(iv);
+        }, 75);
+      }
+    }, { threshold: 0.25 });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
   return (
-    <ComposableMap
-      projection="geoMercator"
-      projectionConfig={{ center: [-56, -16], scale }}
-      width={width}
-      height={height}
-      style={{ width: "100%", height: "auto" }}
-    >
-      <Geographies geography={GEO_URL}>
-        {({ geographies }: any) =>
-          geographies.map((geo: any) => (
-            <Geography
-              key={geo.rsmKey}
-              geography={geo}
-              fill="#E8F5F1"
+    <div ref={wrapRef}>
+      <ComposableMap
+        projection="geoMercator"
+        projectionConfig={{ center: [-56, -16], scale }}
+        width={width}
+        height={height}
+        style={{ width: "100%", height: "auto" }}
+      >
+        <Geographies geography={GEO_URL}>
+          {({ geographies }: any) =>
+            geographies.map((geo: any) => (
+              <Geography
+                key={geo.rsmKey}
+                geography={geo}
+                fill="#E8F5F1"
+                stroke="#4DB89E"
+                strokeWidth={0.6}
+                style={{
+                  default: { outline: "none" },
+                  hover:   { fill: "#D4EDE7", outline: "none" },
+                  pressed: { outline: "none" },
+                }}
+              />
+            ))
+          }
+        </Geographies>
+
+        {CIDADES.map((c, i) => (
+          <g key={c.label + "-line"} style={{ opacity: i < visibleCount ? 1 : 0, transition: "opacity 0.6s ease" }}>
+            <Line
+              from={SEDE}
+              to={c.coords}
               stroke="#4DB89E"
-              strokeWidth={0.6}
-              style={{
-                default: { outline: "none" },
-                hover:   { fill: "#D4EDE7", outline: "none" },
-                pressed: { outline: "none" },
-              }}
+              strokeWidth={0.5}
+              strokeDasharray="3 4"
+              strokeOpacity={0.3}
             />
-          ))
-        }
-      </Geographies>
+          </g>
+        ))}
 
-      {CIDADES.map((c) => (
-        <Line
-          key={c.label + "-line"}
-          from={SEDE}
-          to={c.coords}
-          stroke="#4DB89E"
-          strokeWidth={0.5}
-          strokeDasharray="3 4"
-          strokeOpacity={0.3}
-        />
-      ))}
+        {CIDADES.map((c, i) => (
+          <g key={c.label + "-marker"} style={{ opacity: i < visibleCount ? 1 : 0, transition: "opacity 0.45s ease" }}>
+            <Marker coordinates={c.coords}>
+              <circle r={4} fill="#4DB89E" fillOpacity={0.75} stroke="#fff" strokeWidth={1}/>
+            </Marker>
+          </g>
+        ))}
 
-      {CIDADES.map((c) => (
-        <Marker key={c.label + "-marker"} coordinates={c.coords}>
-          <circle r={4} fill="#4DB89E" fillOpacity={0.75} stroke="#fff" strokeWidth={1}/>
+        <Marker coordinates={SEDE}>
+          <circle r={12} fill="#4DB89E" fillOpacity={0.12}>
+            <animate attributeName="r" values="8;18;8" dur="2.5s" repeatCount="indefinite"/>
+            <animate attributeName="fill-opacity" values="0.12;0;0.12" dur="2.5s" repeatCount="indefinite"/>
+          </circle>
+          <circle r={6} fill="#4DB89E" stroke="#fff" strokeWidth={2}/>
+          <rect x={-52} y={-22} width={100} height={20} rx={4} fill="#fff" stroke="#C8EDE4" strokeWidth={1}/>
+          <text x={-2} y={-7} textAnchor="middle" fontSize={10} fontWeight={700} fill="#2B8970" fontFamily="sans-serif">
+            Serrinha/BA — Sede
+          </text>
         </Marker>
-      ))}
-
-      <Marker coordinates={SEDE}>
-        <circle r={12} fill="#4DB89E" fillOpacity={0.12}>
-          <animate attributeName="r" values="8;18;8" dur="2.5s" repeatCount="indefinite"/>
-          <animate attributeName="fill-opacity" values="0.12;0;0.12" dur="2.5s" repeatCount="indefinite"/>
-        </circle>
-        <circle r={6} fill="#4DB89E" stroke="#fff" strokeWidth={2}/>
-        <rect x={-52} y={-22} width={100} height={20} rx={4} fill="#fff" stroke="#C8EDE4" strokeWidth={1}/>
-        <text x={-2} y={-7} textAnchor="middle" fontSize={10} fontWeight={700} fill="#2B8970" fontFamily="sans-serif">
-          Serrinha/BA — Sede
-        </text>
-      </Marker>
-    </ComposableMap>
+      </ComposableMap>
+    </div>
   );
 }

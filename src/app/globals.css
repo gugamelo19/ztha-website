@@ -8,28 +8,9 @@
   --color-teal-border:  #C8EDE4;
   --color-ink:          #0A121E;
   --color-dark:         #1A2236;
-  --color-dark-mid:     #15293A;
-  --color-dark-border:  #1D2C3E;
   --color-muted:        #6B7A93;
-  --color-body:         #3A4658;
-  --color-light-text:   #9FB0C4;
   --color-site-border:  #E8EBF0;
   --color-site-bg:      #F7F8FA;
-
-  --font-display: var(--font-display-var), sans-serif;
-  --font-body:    var(--font-body-var), sans-serif;
-
-  --animate-fade-up:   fadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
-  --animate-badge-pop: badgePop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) both;
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes badgePop {
-    from { opacity: 0; transform: scale(0.7); }
-    to   { opacity: 1; transform: scale(1); }
-  }
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -55,19 +36,68 @@ body {
   padding-right: 32px;
 }
 
+/* ─── Fonte mono utilitária ─────────────────────────────── */
+.zt-mono {
+  font-family: var(--font-mono-var), 'Courier New', monospace;
+  letter-spacing: 0.06em;
+}
+
+/* ─── Linhas estruturais (trilhas do circuito) ──────────── */
+.zt-rails {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 40;
+}
+.zt-rails > div {
+  max-width: 1200px;
+  height: 100%;
+  margin: 0 auto;
+  border-left: 1px solid rgba(127, 148, 168, 0.09);
+  border-right: 1px solid rgba(127, 148, 168, 0.09);
+}
+@media (max-width: 900px) { .zt-rails { display: none; } }
+
+/* ─── Marquee infinito ──────────────────────────────────── */
+@keyframes ztMarquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.zt-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: ztMarquee 32s linear infinite;
+}
+.zt-marquee-track:hover { animation-play-state: paused; }
+
+@keyframes ztTicker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.zt-ticker-track {
+  display: flex;
+  width: max-content;
+  animation: ztTicker 40s linear infinite;
+}
+
+/* ─── Animações globais ─────────────────────────────────── */
+@keyframes ztFadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
+  .zt-marquee-track, .zt-ticker-track { animation: none !important; }
 }
 
+/* ─── Responsivo ────────────────────────────────────────── */
 @media (max-width: 768px) {
   .container-site { padding-left: 16px; padding-right: 16px; }
-  .hero-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
-  .hero-badge-area { justify-content: flex-start !important; }
   .services-grid { grid-template-columns: 1fr !important; }
-  .partners-grid { grid-template-columns: repeat(2, 1fr) !important; }
   .coverage-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
   .footer-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
   .contato-grid { grid-template-columns: 1fr !important; }
@@ -75,9 +105,14 @@ body {
   .sobre-grid { grid-template-columns: 1fr !important; }
   .valores-grid { grid-template-columns: repeat(2, 1fr) !important; }
   .cobertura-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .clients-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  section { padding-top: 56px !important; padding-bottom: 56px !important; }
 }
 @media (max-width: 480px) {
   .valores-grid { grid-template-columns: 1fr !important; }
   .cobertura-grid { grid-template-columns: 1fr !important; }
-  .partners-grid { grid-template-columns: 1fr !important; }
+  .clients-grid { grid-template-columns: 1fr !important; }
 }
+
+.zt-hero { min-height: 100vh; }
+@media (max-width: 900px) { .zt-hero { min-height: auto; } .zt-hero > div:first-of-type { padding-top: 110px !important; padding-bottom: 40px !important; } }
