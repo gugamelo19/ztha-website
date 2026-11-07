@@ -64,27 +64,26 @@ const TABS = [
 ];
 
 const PLANOS_SEG = [
-  { id: "start",    nome: "START",    hw: "1 câmera + alarme",  para: "Lojinhas e consultórios",               preco: "89,90",   destaque: false },
-  { id: "comercio", nome: "COMÉRCIO", hw: "3 câmeras + alarme",  para: "Lojas, mercadinhos, farmácias",        preco: "189,90",  destaque: true  },
-  { id: "negocio",  nome: "NEGÓCIO",  hw: "6 câmeras + alarme",  para: "Supermercados, depósitos, escolas",    preco: "289,90",  destaque: false },
+  { id: "start",    nome: "START",    para: "Lojinhas e consultórios",               preco: "89,90",   destaque: false },
+  { id: "comercio", nome: "COMÉRCIO", para: "Lojas, mercadinhos, farmácias",          preco: "189,90",  destaque: true  },
+  { id: "negocio",  nome: "NEGÓCIO",  para: "Supermercados, depósitos, escolas",      preco: "289,90",  destaque: false },
 ];
 
 const INCLUDES_SEG = [
-  "Câmeras HD com visão noturna",
-  "Central de alarme inclusa",
   "60 dias de gravação em nuvem",
   "Alertas no celular em tempo real",
+  "Monitoramento 24h todos os dias",
   "Instalação profissional inclusa",
 ];
 
 const COMBO_ITEMS = [
-  "6 câmeras + central de alarme + nuvem",
+  "Monitoramento em nuvem completo",
   "Segurança de rede + backup",
   "Manutenção de até 5 máquinas",
 ];
 
 const EMP_ITEMS = [
-  "Até 16 câmeras + central de alarme",
+  "Monitoramento de até 16 pontos",
   "Rede, backup e Wi-Fi gerenciado",
   "Manutenção de até 15 máquinas",
   "Visita técnica mensal garantida",
@@ -148,7 +147,7 @@ export default function PlanosPage() {
                   Sua loja monitorada <span style={{ color: TEAL }}>24h</span> por menos de R$3 por dia.
                 </h2>
                 <p style={{ fontSize: 15, color: MUTED }}>
-                  Câmeras + alarme + alertas no celular · 60 dias de gravação em nuvem
+                  Alertas no celular em tempo real · 60 dias de gravação em nuvem
                 </p>
               </div>
 
@@ -170,8 +169,7 @@ export default function PlanosPage() {
                         padding: "4px 14px", borderRadius: 100, letterSpacing: "0.1em", whiteSpace: "nowrap",
                       }}>MAIS VENDIDO</div>
                     )}
-                    <div style={{ fontFamily: "var(--font-display-var,sans-serif)", fontSize: 15, fontWeight: 800, color: p.destaque ? "#fff" : DARK, letterSpacing: "0.06em", marginBottom: 3 }}>{p.nome}</div>
-                    <div style={{ fontSize: 12, color: p.destaque ? "rgba(255,255,255,0.75)" : TEAL, fontWeight: 600, marginBottom: 2 }}>{p.hw}</div>
+                    <div style={{ fontFamily: "var(--font-display-var,sans-serif)", fontSize: 15, fontWeight: 800, color: p.destaque ? "#fff" : DARK, letterSpacing: "0.06em", marginBottom: 6 }}>{p.nome}</div>
                     <div style={{ fontSize: 12, color: p.destaque ? "rgba(255,255,255,0.55)" : MUTED, marginBottom: 14 }}>{p.para}</div>
                     <div style={{ fontFamily: "var(--font-display-var,sans-serif)", fontSize: 28, fontWeight: 800, color: p.destaque ? "#fff" : DARK, lineHeight: 1, letterSpacing: "-0.03em" }}>
                       R${p.preco}<span style={{ fontSize: 13, fontWeight: 500, color: p.destaque ? "rgba(255,255,255,0.65)" : MUTED }}>/mês</span>
@@ -250,7 +248,7 @@ export default function PlanosPage() {
                 <h2 style={{ fontFamily: "var(--font-display-var,sans-serif)", fontSize: "clamp(22px,3.5vw,34px)", fontWeight: 700, color: DARK, letterSpacing: "-0.03em", margin: "0 0 8px" }}>
                   Mais barato que um <span style={{ color: TEAL }}>funcionário de TI.</span>
                 </h2>
-                <p style={{ fontSize: 15, color: MUTED }}>Câmeras, rede, backup e informática com um fornecedor só.</p>
+                <p style={{ fontSize: 15, color: MUTED }}>Monitoramento, rede, backup e informática com um fornecedor só.</p>
               </div>
 
               <div style={{ background: "#fff", border: `2px solid ${TEAL}`, borderRadius: 20, padding: "32px 28px", marginBottom: 20, position: "relative" }}>
